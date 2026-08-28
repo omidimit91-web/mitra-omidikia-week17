@@ -14,7 +14,6 @@ function ContactForm() {
     setcontact((contact) => ({ ...contact, [name]: value }));
   };
   const submitHandler = () => {
-    console.log("first");
     if (contact.name.trim().length < 6) {
       setError("لطفا نام و نام خانوادگی معتبر وارد کنید");
       return;
@@ -25,7 +24,7 @@ function ContactForm() {
     }
     dispatch({
       type: "Add Contact",
-      payload: contact,
+      payload: {...contact, id:Math.floor(Math.random()*10000)}
     });
     setcontact({
     name: "",
@@ -35,24 +34,24 @@ function ContactForm() {
     setError("");
   };
   return (
-    <form action="">
+    <form >
       <input
         type="text"
-        palaceholder="نام و نام خانوادگی"
+        placeholder ="نام و نام خانوادگی"
         name="name"
         value={contact.name}
         onChange={changeHandler}
       />
       <input
         type="email"
-        palaceholder="ایمیل"
+        placeholder ="ایمیل"
         name="email"
         value={contact.email}
         onChange={changeHandler}
       />
       <input
         type="number"
-        palaceholder="شماره همراه"
+        placeholder ="شماره همراه"
         name="phone"
         value={contact.phone}
         onChange={changeHandler}
